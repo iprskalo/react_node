@@ -82,10 +82,12 @@ class Albums extends React.Component {
                             <p></p>
                         </div>
                         <div className="extra">
+                        <a onClick={this.handleUpVote}>
                             <div className="ui label">
-                                <a onClick={this.handleUpVote}>
-                                    <img src='/images/products/like.png' /></a>
+                                
+                                    <img src='/images/products/like.png' />
                             </div>
+                            </a>
                             <div className="ui label">{this.props.votes}</div>
                         </div>
                     </div>
