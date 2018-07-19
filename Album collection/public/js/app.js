@@ -1,32 +1,92 @@
-class ProductList extends React.Component {
+class AlbumList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            albums: [],
+        };
+
+        this.handleAlbumUpvote = this.handleAlbumUpvote.bind(this);
+    }
+
+    componentDidMount(){
+        this.setState({albums: Seed.albums});
+    }
+
+
+    handleAlbumUpvote(albumId) {
+        const nextAlbums = this.state.albums.map((album) => {
+            if(album.id === albumId){
+                return Object.assign({}, album, {
+                    votes: album.votes + 1,
+                });
+            } else{
+                return album;
+            }
+        });
+        this.setState({
+            albums: nextAlbums,
+        });
+    }
+
+
     render() {
+        const albums = this.state.albums.sort((a, b) => (
+            b.votes - a.votes
+        ));
+
+        const albumComponents = albums.map((album) => (
+            <Albums
+                key={'album-' + album.id}
+                id={album.id}
+                title={album.title}
+                description={album.description}
+                url={album.url}
+                votes={album.votes}
+                productImageUrl={album.productImageUrl}
+                onVote={this.handleAlbumUpvote}
+            />
+
+        ));
+
         return (
-            <div>a</div>
-        );
+            <div className='ui unstackable items'>
+                {albumComponents}
+            </div>
+        )
     }
 }
 
-class Product extends React.Component {
+class Albums extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleUpVote = this.handleUpVote.bind(this);
+    }
+
+    handleUpVote() {
+        this.props.onVote(this.props.id);
+    }
     render() {
         return (
-            <div class="ui divided items">
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/wireframe/image.png" />
+            <div className="ui divided items">
+                <div className="item">
+                    <div className="image">
+                        <img src={this.props.productImageUrl} />
                     </div>
-                    <div class="content">
-                        <a class="header">12 Years a Slave</a>
-                        <div class="meta">
-                            <span class="cinema">Union Square 14</span>
+                    <div className="content">
+                        <a className="header">{this.props.title}</a>
+                        <div className="meta">
+                            <span className="cinema">{this.props.description}</span>
                         </div>
-                        <div class="description">
+                        <div className="description">
                             <p></p>
                         </div>
-                        <div class="extra">
-                            <div class="ui label">
-                                <img src='/images/products/like.png' />
+                        <div className="extra">
+                            <div className="ui label">
+                                <a onClick={this.handleUpVote}>
+                                    <img src='/images/products/like.png' /></a>
                             </div>
-                            <div class="ui label">Brojač</div>
+                            <div className="ui label">{this.props.votes}</div>
                         </div>
                     </div>
                 </div>
@@ -36,6 +96,6 @@ class Product extends React.Component {
 }
 
 ReactDOM.render(
-    <Product />,
+    <AlbumList />,
     document.getElementById('content')
 );

@@ -3,7 +3,7 @@ window.Seed = (function () {
     return Math.floor((Math.random() * 30) + 5);
   }
 
-  const products = [
+  const albums = [
     {
       id: 1,
       title: 'Villains',
@@ -38,5 +38,5 @@ window.Seed = (function () {
     },
   ];
 
-  return { products: products };
+  return { albums: albums };
 }());
