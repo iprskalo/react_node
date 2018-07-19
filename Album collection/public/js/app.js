@@ -9,18 +9,18 @@ class AlbumList extends React.Component {
         this.handleAlbumUpvote = this.handleAlbumUpvote.bind(this);
     }
 
-    componentDidMount(){
-        this.setState({albums: Seed.albums});
+    componentDidMount() {
+        this.setState({ albums: Seed.albums });
     }
 
 
     handleAlbumUpvote(albumId) {
         const nextAlbums = this.state.albums.map((album) => {
-            if(album.id === albumId){
+            if (album.id === albumId) {
                 return Object.assign({}, album, {
                     votes: album.votes + 1,
                 });
-            } else{
+            } else {
                 return album;
             }
         });
@@ -82,13 +82,10 @@ class Albums extends React.Component {
                             <p></p>
                         </div>
                         <div className="extra">
-                        <a onClick={this.handleUpVote}>
-                            <div className="ui label">
-                                
-                                    <img src='/images/products/like.png' />
-                            </div>
+                            <a class="ui label" onClick={this.handleUpVote}>
+                                <img className="ui right spaced avatar image" src="/images/products/like.png" />
+                                <div className="detail">{this.props.votes}</div>
                             </a>
-                            <div className="ui label">{this.props.votes}</div>
                         </div>
                     </div>
                 </div>
