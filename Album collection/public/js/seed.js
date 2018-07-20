@@ -10,7 +10,7 @@ window.Seed = (function () {
       description: 'The album has been described as "a little looser and more uptempo than their last release ...Like Clockwork and "more carefree". Josh Homme cites his interest in dancing, working with Mark Ronson, and the song, "Uptown Funk" for the direction of the album.',
       url: '#',
       votes: generateVoteCount(),
-      productImageUrl: 'images/products/1.png',
+      productImageUrl: 'images/1.png',
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ window.Seed = (function () {
       description: 'Songs for the Deaf is loosely considered a concept album, taking the listener on a drive through the California desert from Los Angeles to Joshua Tree while tuning into radio stations from towns along the way, such as Banning and Chino Hills.',
       url: '#',
       votes: generateVoteCount(),
-      productImageUrl: 'images/products/2.png',
+      productImageUrl: 'images/2.png',
     },
     {
       id: 3,
@@ -26,7 +26,7 @@ window.Seed = (function () {
       description: 'The albums title Era Vulgaris refers to the Latin term for Common Era. The title was chosen by Homme because he thought "it sounds like the Vulgar Era, which I like, because that sounds like something that I would like to be part of… I mean I think were in it, and Im stoked" ',
       url: '#',
       votes: generateVoteCount(),
-      productImageUrl: 'images/products/3.jpg',
+      productImageUrl: 'images/3.jpg',
     },
     {
       id: 4,
@@ -34,7 +34,7 @@ window.Seed = (function () {
       description: 'And at the time, I was like, "Fuck, no ones even listening to this. Its too much about other stuff." And it would have been easy to make Songs for the Deaf 2, which is basically all I heard in my own head. But I cant do that. Youve got to shake all that shit away',
       url: '#',
       votes: generateVoteCount(),
-      productImageUrl: 'images/products/4.jpg',
+      productImageUrl: 'images/4.jpg',
     },
   ];
 
