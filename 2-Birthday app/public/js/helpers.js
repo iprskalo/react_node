@@ -3,7 +3,7 @@ window.helpers = (function () {
     const timer = {
       title: attrs.title || 'Timer',
       project: attrs.project || 'Project',
-      id: uuid.v4(), // eslint-disable-line no-undef
+      id: uuid.v4(),
       elapsed: 0,
     };
 

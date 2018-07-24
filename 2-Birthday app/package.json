@@ -1,12 +1,10 @@
 {
-  "name": "timers_app",
+  "name": "birthdays",
   "version": "1.1.0",
-  "author": "Fullstack.io",
+  "author": "Ivan Prskalo",
   "scripts": {
     "go": "open http://localhost:3000; npm run server",
-    "e2e": "nightwatch; npm run reset-data;",
     "reset-data": "cp data.json.pristine data.json",
-    "test": "npm run reset-data; ./node_modules/.bin/concurrently -k 'npm run server' 'npm run e2e'",
     "server": "babel-node server.js",
     "start": "npm run server"
   },

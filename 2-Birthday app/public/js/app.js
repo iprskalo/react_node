@@ -7,21 +7,12 @@ class TimersDashboard extends React.Component {
         this.createTimer(timer);
     };
 
-
     handleEditFormSubmit = (attrs) => {
         this.updateTimer(attrs);
     };
 
     handleTrashClick = (timerId) => {
         this.deleteTimer(timerId);
-    };
-
-    handleStartClick = (timerId) => {
-        this.startTimer(timerId);
-    };
-
-    handleStopClick = (timerId) => {
-        this.stopTimer(timerId);
     };
 
     createTimer = (timer) => {
@@ -54,7 +45,7 @@ class TimersDashboard extends React.Component {
             timers: this.state.timers.filter(t => t.id !== timerId),
         });
         client.deleteTimer(
-            {id: timerId}
+            { id: timerId }
         );
     };
 
@@ -110,8 +101,6 @@ class TimersDashboard extends React.Component {
                         timers={this.state.timers}
                         onFormSubmit={this.handleEditFormSubmit}
                         onTrashClick={this.handleTrashClick}
-                        onStartClick={this.handleStartClick}
-                        onStopClick={this.handleStopClick}
                     />
                     <ToggleableTimerForm
                         onFormSubmit={this.handleCreateFormSubmit}
@@ -176,8 +165,6 @@ class EditableTimerList extends React.Component {
                 runningSince={timer.runningSince}
                 onFormSubmit={this.props.onFormSubmit}
                 onTrashClick={this.props.onTrashClick}
-                onStartClick={this.props.onStartClick}
-                onStopClick={this.props.onStopClick}
             />
         ));
         return (
@@ -236,8 +223,6 @@ class EditableTimer extends React.Component {
                     runningSince={this.props.runningSince}
                     onEditClick={this.handleEditClick}
                     onTrashClick={this.props.onTrashClick}
-                    onStartClick={this.props.onStartClick}
-                    onStopClick={this.props.onStopClick}
                 />
             );
         }
@@ -255,14 +240,6 @@ class Timer extends React.Component {
 
     handleTrashClick = () => {
         this.props.onTrashClick(this.props.id);
-    };
-
-    handleStartClick = () => {
-        this.props.onStartClick(this.props.id);
-    };
-
-    handleStopClick = () => {
-        this.props.onStopClick(this.props.id);
     };
 
     render() {
@@ -297,38 +274,8 @@ class Timer extends React.Component {
                         </span>
                     </div>
                 </div>
-                <div className='ui bottom attached blue basic button'>
-                    Start
-          </div>
-                <TimerActionButton
-                    timerIsRunning={!!this.props.runningSince}
-                    onStartClick={this.handleStartClick}
-                    onStopClick={this.handleStopClick} />
             </div>
         );
-    }
-}
-
-class TimerActionButton extends React.Component {
-    render() {
-        if (this.props.timerIsRunning) {
-            return (
-                <div
-                    className='ui bottom attached red basic button'
-                    onClick={this.props.onStopClick}>
-                    Stop
-                </div>
-            );
-        } else {
-            return (
-                <div
-                    className='ui bottom attached green basic button'
-                    onClick={this.props.onStartClick}
-                >
-                    Start
-                </div>
-            );
-        }
     }
 }
 
@@ -361,7 +308,7 @@ class TimerForm extends React.Component {
                 <div className='content'>
                     <div className='ui form'>
                         <div className='field'>
-                            <label>Title</label>
+                            <label>Full name</label>
                             <input
                                 type='text'
                                 value={this.state.title}
@@ -369,9 +316,17 @@ class TimerForm extends React.Component {
                             />
                         </div>
                         <div className='field'>
-                            <label>Project</label>
+                            <label>Relation</label>
                             <input
                                 type='text'
+                                value={this.state.project}
+                                onChange={this.handleProjectChange}
+                            />
+                        </div>
+                        <div className='field'>
+                            <label>Date</label>
+                            <input
+                                type='date'
                                 value={this.state.project}
                                 onChange={this.handleProjectChange}
                             />
