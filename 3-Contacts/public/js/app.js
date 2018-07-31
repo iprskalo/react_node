@@ -15,8 +15,23 @@ class ContactsDashboard extends React.Component {
         this.deleteContact(contactId);
     };
 
+    newContact = (attrs) => {
+        const contact = {
+            name: attrs.name || 'Name',
+            address: attrs.address || 'Address',
+            date: attrs.date || 'Date',
+            mail: attrs.mail || 'Mail',
+            cellphone: attrs.cellphone || 'Cellphone',
+            image: attrs.image || 'Image',
+            id: uuid.v4(),
+        };
+
+        return contact;
+    }
+
+
     createContact = (contact) => {
-        const c = helpers.newContact(contact);
+        const c = this.newContact(contact);
         this.setState({
             contacts: this.state.contacts.concat(c),
         });
@@ -167,7 +182,7 @@ class EditableContact extends React.Component {
                     date={this.props.date}
                     mail={this.props.mail}
                     cellphone={this.props.cellphone}
-                    image={this.props.image}                    
+                    image={this.props.image}
                     onFormSubmit={this.handleSubmit}
                     onFormClose={this.handleFormClose}
                 />
@@ -229,7 +244,7 @@ class Contact extends React.Component {
                             <i className='edit icon' />
                         </span>
                         <span className='right floated trash icon'
-                        onClick={this.handleTrashClick}>
+                            onClick={this.handleTrashClick}>
                             <i className='trash icon' />
                         </span>
                     </div>
