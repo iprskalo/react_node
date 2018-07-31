@@ -1,13 +1,17 @@
 window.helpers = (function () {
-  function newTimer(attrs = {}) {
-    const timer = {
-      title: attrs.title || 'Timer',
-      project: attrs.project || 'Project',
+  function newContact(attrs = {}) {
+    const contact = {
+      name: attrs.name || 'Name',
+      address: attrs.address || 'Address',
+      date: attrs.date || 'Date',  
+      mail: attrs.mail || 'Mail',
+      cellphone: attrs.cellphone || 'Cellphone',
+      image: attrs.image || 'Image',      
       id: uuid.v4(),
-      elapsed: 0,
+
     };
 
-    return timer;
+    return contact;
   }
 
   function findById(array, id, cb) {
@@ -49,7 +53,7 @@ window.helpers = (function () {
 
   return {
     millisecondsToHuman,
-    newTimer,
+    newContact,
     findById,
     renderElapsedString,
   };
