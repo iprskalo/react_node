@@ -214,28 +214,13 @@ class Contact extends React.Component {
             <div className="ui items">
                 <div className="item">
                     <div className="image">
-                        <img src={this.props.image} />
+                        <img src="/images/daniel.jpg" />
                     </div>
                     <div className="content">
                         <a className="header">{this.props.name}</a>
-                        <div className="description">
-                            <span>{this.props.address}</span>
-                        </div>
-                        <div className="description">
-                            <span>{this.props.mail}</span>
-                        </div>
-                        <div className="description">
-                            <span>{this.props.date}</span>
-                        </div>
-                        <div className="description">
-                            <span>{this.props.cellphone}</span>
-                        </div>
-                        <div className="description">
-                            <span>{this.props.image}</span>
-                        </div>
                         <div className="extra">
                             B'day in:
-      </div>
+                        </div>
                     </div>
                     <div className='extra content'>
                         <span
