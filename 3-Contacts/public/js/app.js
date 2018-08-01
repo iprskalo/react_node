@@ -35,6 +35,7 @@ class ContactsDashboard extends React.Component {
         this.setState({
             contacts: this.state.contacts.concat(c),
         });
+
     };
 
     updateContact = (attrs) => {
@@ -54,13 +55,14 @@ class ContactsDashboard extends React.Component {
                 }
             }),
         });
+
     };
 
     deleteContact = (contactId) => {
         this.setState({
             contacts: this.state.contacts.filter(c => c.id !== contactId),
         });
-    }
+    };
 
     render() {
         return (
@@ -224,19 +226,18 @@ class Contact extends React.Component {
     };
 
     render() {
-        var imageString = "/images/"+this.props.image+".jpg";
-            if (this.state.isLarge === false) {
+        if (this.state.isLarge === false) {
             return (
                 <div className="ui items">
                     <div className="item">
                         <div className="image">
-                            <img src={"/images/"+this.props.image+".jpg"} />
+                            <img src={"/images/" + this.props.image + ".jpg"} />
                         </div>
                         <div className="content">
                             <a className="header"
                                 onClick={this.extendForm}>
                                 {this.props.name}</a>
-                        </div>                        
+                        </div>
                         <div className='extra content'>
                             <span
                                 className='right floated edit icon'
@@ -256,7 +257,7 @@ class Contact extends React.Component {
                 <div className="ui items">
                     <div className="item">
                         <div className="image">
-                            <img src={"/images/"+this.props.image+".jpg"} />
+                            <img src={"/images/" + this.props.image + ".jpg"} />
                         </div>
                         <div className="content">
                             <a
@@ -277,9 +278,7 @@ class Contact extends React.Component {
                             <div className='meta'>
                                 {this.props.cellphone}
                             </div>
-                            <div className='meta'>
-                                {this.props.image}
-                            </div>                                                    </div>
+                        </div>
                         <div className='extra content'>
                             <span
                                 className='right floated edit icon'

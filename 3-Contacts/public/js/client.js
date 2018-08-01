@@ -1,5 +1,5 @@
 window.client = (function () {
-  function getTimers(success) {
+  function getContact(success) {
     return fetch('/api/timers', {
       headers: {
         Accept: 'application/json',
@@ -9,7 +9,7 @@ window.client = (function () {
       .then(success);
   }
 
-  function createTimer(data) {
+  function createContact(data) {
     return fetch('/api/timers', {
       method: 'post',
       body: JSON.stringify(data),
@@ -20,7 +20,7 @@ window.client = (function () {
     }).then(checkStatus);
   }
 
-  function updateTimer(data) {
+  function updateContact(data) {
     return fetch('/api/timers', {
       method: 'put',
       body: JSON.stringify(data),
@@ -31,7 +31,7 @@ window.client = (function () {
     }).then(checkStatus);
   }
 
-  function deleteTimer(data) {
+  function deleteContact(data) {
     return fetch('/api/timers', {
       method: 'delete',
       body: JSON.stringify(data),
@@ -81,11 +81,11 @@ window.client = (function () {
   }
 
   return {
-    getTimers,
-    createTimer,
-    updateTimer,
+    getContact,
+    createContact,
+    updateContact,
     startTimer,
     stopTimer,
-    deleteTimer,
+    deleteContact,
   };
 }());

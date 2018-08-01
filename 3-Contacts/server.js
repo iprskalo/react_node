@@ -29,31 +29,33 @@ app.get('/api/timers', (req, res) => {
 
 app.post('/api/timers', (req, res) => {
   fs.readFile(DATA_FILE, (err, data) => {
-    const timers = JSON.parse(data);
-    const newTimer = {
-      title: req.body.title,
-      project: req.body.project,
+    const contacts = JSON.parse(data);
+    const newContact = {
+      name: req.body.name,
+      address: req.body.address,
+      mail: req.body.mail,
+      date: req.body.date,
+      cellphone: req.body.cellphone,
+      image: req.body.image,
       id: req.body.id,
-      elapsed: 0,
-      runningSince: null,
     };
-    timers.push(newTimer);
-    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
+    contacts.push(newContact);
+    fs.writeFile(DATA_FILE, JSON.stringify(contacts, null, 4), () => {
       res.setHeader('Cache-Control', 'no-cache');
-      res.json(timers);
+      res.json(contacts);
     });
   });
 });
 
 app.post('/api/timers/start', (req, res) => {
   fs.readFile(DATA_FILE, (err, data) => {
-    const timers = JSON.parse(data);
-    timers.forEach((timer) => {
-      if (timer.id === req.body.id) {
-        timer.runningSince = req.body.start;
+    const contacts = JSON.parse(data);
+    contacts.forEach((contact) => {
+      if (contact.id === req.body.id) {
+        contact.runningSince = req.body.start;
       }
     });
-    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
+    fs.writeFile(DATA_FILE, JSON.stringify(contacts, null, 4), () => {
       res.json({});
     });
   });
@@ -61,15 +63,15 @@ app.post('/api/timers/start', (req, res) => {
 
 app.post('/api/timers/stop', (req, res) => {
   fs.readFile(DATA_FILE, (err, data) => {
-    const timers = JSON.parse(data);
-    timers.forEach((timer) => {
-      if (timer.id === req.body.id) {
-        const delta = req.body.stop - timer.runningSince;
-        timer.elapsed += delta;
-        timer.runningSince = null;
+    const contacts = JSON.parse(data);
+    contacts.forEach((contact) => {
+      if (contact.id === req.body.id) {
+        const delta = req.body.stop - contact.runningSince;
+        contact.elapsed += delta;
+        contact.runningSince = null;
       }
     });
-    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
+    fs.writeFile(DATA_FILE, JSON.stringify(contacts, null, 4), () => {
       res.json({});
     });
   });
@@ -78,10 +80,16 @@ app.post('/api/timers/stop', (req, res) => {
 app.put('/api/timers', (req, res) => {
   fs.readFile(DATA_FILE, (err, data) => {
     const timers = JSON.parse(data);
-    timers.forEach((timer) => {
-      if (timer.id === req.body.id) {
-        timer.title = req.body.title;
-        timer.project = req.body.project;
+    timers.forEach((contact) => {
+      if (contact.id === req.body.id) {
+        contact.name = req.body.name;
+        contact.address = req.body.address;
+        contact.mail = req.body.mail;
+        contact.date = req.body.date;
+        contact.cellphone = req.body.cellphone;
+        contact.image = req.body.image;
+
+
       }
     });
     fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
@@ -92,15 +100,15 @@ app.put('/api/timers', (req, res) => {
 
 app.delete('/api/timers', (req, res) => {
   fs.readFile(DATA_FILE, (err, data) => {
-    let timers = JSON.parse(data);
-    timers = timers.reduce((memo, timer) => {
-      if (timer.id === req.body.id) {
+    let contacts = JSON.parse(data);
+    contacts = contacts.reduce((memo, contact) => {
+      if (contact.id === req.body.id) {
         return memo;
       } else {
-        return memo.concat(timer);
+        return memo.concat(contact);
       }
     }, []);
-    fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
+    fs.writeFile(DATA_FILE, JSON.stringify(contacts, null, 4), () => {
       res.json({});
     });
   });

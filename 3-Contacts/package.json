@@ -3,10 +3,7 @@
   "version": "1.1.0",
   "author": "Ivan Prskalo",
   "scripts": {
-    "go": "open http://localhost:3000; npm run server",
-    "reset-data": "cp data.json.pristine data.json",
-    "server": "babel-node server.js",
-    "start": "npm run server"
+    "go": "open http://localhost:3000"
   },
   "babel": {
     "presets": [
