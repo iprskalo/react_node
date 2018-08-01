@@ -196,6 +196,7 @@ class EditableContact extends React.Component {
                     date={this.props.date}
                     mail={this.props.mail}
                     cellphone={this.props.cellphone}
+                    image={this.props.image}
                     onEditClick={this.handleEditClick}
                     onTrashClick={this.props.onTrashClick}
                 />
@@ -205,37 +206,95 @@ class EditableContact extends React.Component {
 }
 
 class Contact extends React.Component {
+
+    state = {
+        isLarge: false,
+    };
+
     handleTrashClick = () => {
         this.props.onTrashClick(this.props.id);
     };
 
+    shortenForm = () => {
+        this.setState({ isLarge: false });
+    };
+
+    extendForm = () => {
+        this.setState({ isLarge: true });
+    };
+
     render() {
-        return (
-            <div className="ui items">
-                <div className="item">
-                    <div className="image">
-                        <img src="/images/daniel.jpg" />
-                    </div>
-                    <div className="content">
-                        <a className="header">{this.props.name}</a>
-                        <div className="extra">
-                            B'day in:
+        var imageString = "/images/"+this.props.image+".jpg";
+            if (this.state.isLarge === false) {
+            return (
+                <div className="ui items">
+                    <div className="item">
+                        <div className="image">
+                            <img src={"/images/"+this.props.image+".jpg"} />
+                        </div>
+                        <div className="content">
+                            <a className="header"
+                                onClick={this.extendForm}>
+                                {this.props.name}</a>
+                        </div>                        
+                        <div className='extra content'>
+                            <span
+                                className='right floated edit icon'
+                                onClick={this.props.onEditClick}>
+                                <i className='edit icon' />
+                            </span>
+                            <span className='right floated trash icon'
+                                onClick={this.handleTrashClick}>
+                                <i className='trash icon' />
+                            </span>
                         </div>
                     </div>
-                    <div className='extra content'>
-                        <span
-                            className='right floated edit icon'
-                            onClick={this.props.onEditClick}>
-                            <i className='edit icon' />
-                        </span>
-                        <span className='right floated trash icon'
-                            onClick={this.handleTrashClick}>
-                            <i className='trash icon' />
-                        </span>
+                </div>
+            );
+        } else {
+            return (
+                <div className="ui items">
+                    <div className="item">
+                        <div className="image">
+                            <img src={"/images/"+this.props.image+".jpg"} />
+                        </div>
+                        <div className="content">
+                            <a
+                                className="header"
+                                onClick={this.shortenForm}
+                            >
+                                {this.props.name}
+                            </a>
+                            <div className='meta'>
+                                {this.props.address}
+                            </div>
+                            <div className='meta'>
+                                {this.props.mail}
+                            </div>
+                            <div className='meta'>
+                                {this.props.date}
+                            </div>
+                            <div className='meta'>
+                                {this.props.cellphone}
+                            </div>
+                            <div className='meta'>
+                                {this.props.image}
+                            </div>                                                    </div>
+                        <div className='extra content'>
+                            <span
+                                className='right floated edit icon'
+                                onClick={this.props.onEditClick}>
+                                <i className='edit icon' />
+                            </span>
+                            <span className='right floated trash icon'
+                                onClick={this.handleTrashClick}>
+                                <i className='trash icon' />
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
